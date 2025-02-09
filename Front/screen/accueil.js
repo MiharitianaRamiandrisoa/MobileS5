@@ -23,7 +23,7 @@ const Accueil = () => {
       if (user) {
         const userId = user.uid;
         const db = getFirestore();
-        const cryptosRef = collection(db, 'cryptos');
+        const cryptosRef = collection(db, 'cryptomonnaie');
         
         setLoading(true);
         
@@ -82,11 +82,11 @@ const Accueil = () => {
       if (user) {
         const userId = user.uid;
         const db = getFirestore();
-        const favoriteRef = doc(db, `users/${userId}/favorites/${crypto.id}`);
+        const favoriteRef = doc(db, `users/${userId}/favorites/${crypto.id_cryptomonnaie}`);
         
         try {
           await setDoc(favoriteRef, crypto);
-          Alert.alert('Succès', `${crypto.name} ajouté aux favoris !`);
+          Alert.alert('Succès', `${crypto.nom_cryptomonnaie} ajouté aux favoris !`);
           fetchFavorites(); // Mise à jour des favoris après ajout
           console.log("ajouter dans les favoris ");
         } catch (error) {
@@ -105,11 +105,11 @@ const Accueil = () => {
       if (user) {
         const userId = user.uid;
         const db = getFirestore();
-        const favoriteRef = doc(db, `users/${userId}/favorites/${crypto.id}`);
+        const favoriteRef = doc(db, `users/${userId}/favorites/${crypto.id_cryptomonnaie}`);
         
         try {
           await deleteDoc(favoriteRef);
-          Alert.alert('Succès', `${crypto.name} retiré des favoris !`);
+          Alert.alert('Succès', `${crypto.nom_cryptomonnaie} retiré des favoris !`);
           fetchFavorites(); // Mise à jour des favoris après retrait
           console.log("retirer dans les favoris ");
 
@@ -125,13 +125,13 @@ const Accueil = () => {
   
 
   const renderItem = ({ item }) => {
-    const isFavorite = favorites.some(fav => fav.id === item.id);
+    const isFavorite = favorites.some(fav => fav.id_cryptomonnaie === item.id_cryptomonnaie);
     
     return (
       <View style={styles.cryptoCard}>
         <LinearGradient colors={['#6dd5ed', '#2193b0']} style={styles.cryptoCardBackground}>
-          <Text style={styles.cryptoName}>{item.name} ({item.symbol.toUpperCase()})</Text>
-          <Text style={styles.cryptoPrice}>${item.current_price.toFixed(2)}</Text>
+          <Text style={styles.cryptoName}>{item.nom_cryptomonnaie} </Text>
+          {/* <Text style={styles.cryptoPrice}>${item.current_price.toFixed(2)}</Text> */}
 
           {isAuthenticated && (
             <TouchableOpacity
@@ -183,7 +183,7 @@ const Accueil = () => {
           <FlatList
             data={cryptos}
             renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id_cryptomonnaie}
           />
         )}
       </View>

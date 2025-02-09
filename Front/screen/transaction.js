@@ -5,7 +5,7 @@ import {
 
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, getDocs, setDoc, doc, deleteDoc } from 'firebase/firestore';
-const transaction = () => {
+const Transaction = () => {
   const [amount, setAmount] = useState('');
   const [transactionType, setTransactionType] = useState('depot');
 
@@ -73,7 +73,7 @@ const transaction = () => {
     }
   };
   
-  
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerTitle}>Demande de Dépôt/Retrait</Text>
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default transaction;
+export default Transaction;

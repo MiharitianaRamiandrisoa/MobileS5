@@ -5,9 +5,9 @@ import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [email, setEmail] = useState('cedric@gmail.com'); // Valeur par défaut
+const [password, setPassword] = useState('12345678'); // Valeur par défaut
 
   const handleLogin = async () => {
     setError('');

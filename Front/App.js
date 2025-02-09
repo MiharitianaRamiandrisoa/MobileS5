@@ -8,8 +8,6 @@ import LoginScreen from './screen/login';
 import ProfilePage from './screen/profil';
 import Transaction from './screen/transaction';
 
-
-
 // Initialisation du stack navigator
 const Stack = createStackNavigator();
 
